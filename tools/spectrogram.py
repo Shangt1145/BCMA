@@ -38,6 +38,7 @@ def text_to_spectrogram(text: str, width: int = 800, height: int = 512) -> np.nd
     draw.text((x, y), text, fill=0, font=font)
     arr = np.array(img, dtype=np.float64)
     arr = 1.0 - arr / 255.0
+    arr = arr[::-1, :]
     return arr
 
 
