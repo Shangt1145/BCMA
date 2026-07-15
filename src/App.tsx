@@ -7,6 +7,7 @@ import Dashboard from './pages/console/Dashboard'
 import Terminal from './pages/console/Terminal'
 import Archives from './pages/console/Archives'
 import Communications from './pages/console/Communications'
+import EmailTranscript from './pages/console/EmailTranscript'
 
 function AppRoutes() {
   const navigate = useNavigate()
@@ -30,6 +31,7 @@ function AppRoutes() {
         <Route path="terminal" element={<Terminal />} />
         <Route path="archives" element={<Archives />} />
         <Route path="communications" element={<Communications />} />
+        <Route path="email" element={<EmailTranscript />} />
       </Route>
       <Route path="*" element={<Ledger />} />
     </Routes>

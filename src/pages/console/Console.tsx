@@ -34,6 +34,7 @@ function Console() {
           <NavLink to="/console" end className="nav-link">仪表盘</NavLink>
           <NavLink to="/console/terminal" className="nav-link">终端</NavLink>
           <NavLink to="/console/archives" className="nav-link">档案库</NavLink>
+          <NavLink to="/console/email" className="nav-link">通讯监控</NavLink>
           <div className="nav-sep" />
 
           {user && user.level >= 2 ? (
