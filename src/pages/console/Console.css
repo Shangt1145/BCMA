@@ -98,3 +98,35 @@
   padding: 32px;
   overflow-y: auto;
 }
+
+.portal-login-btn {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #8b949e;
+  padding: 2px 12px;
+  border-radius: 3px;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+}
+
+.portal-login-btn:hover {
+  border-color: #58a6ff;
+  color: #58a6ff;
+}
+
+.portal-logout {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #484f58;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+}
+
+.portal-logout:hover {
+  color: #f85149;
+  border-color: #f85149;
+}

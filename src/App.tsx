@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
 import Ledger from './pages/Ledger'
 import Console from './pages/console/Console'
 import Dashboard from './pages/console/Dashboard'
 import Terminal from './pages/console/Terminal'
 import Archives from './pages/console/Archives'
+import Communications from './pages/console/Communications'
 
-
-function App() {
+function AppRoutes() {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -28,10 +29,18 @@ function App() {
         <Route index element={<Dashboard />} />
         <Route path="terminal" element={<Terminal />} />
         <Route path="archives" element={<Archives />} />
-
+        <Route path="communications" element={<Communications />} />
       </Route>
       <Route path="*" element={<Ledger />} />
     </Routes>
+  )
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   )
 }
 

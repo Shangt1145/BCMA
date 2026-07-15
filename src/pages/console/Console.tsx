@@ -1,15 +1,31 @@
+import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
+import LoginModal from '../../components/LoginModal'
 import './Console.css'
 
 function Console() {
+  const { user, logout } = useAuth()
+  const [showLogin, setShowLogin] = useState(false)
+
   return (
     <div className="portal">
       <header className="portal-header">
         <div className="portal-logo">BCMA</div>
         <div className="portal-title">Integrated Management System</div>
         <div className="portal-meta">
-          <span className="portal-user">SESS-7742-0317</span>
-          <span className="portal-clearance">CLEARANCE: LEVEL 1</span>
+          {user ? (
+            <>
+              <span className="portal-user">{user.name}</span>
+              <span className="portal-clearance">CLEARANCE: LEVEL {user.level}</span>
+              <button className="portal-logout" onClick={logout}>登出</button>
+            </>
+          ) : (
+            <>
+              <span className="portal-clearance">GUEST</span>
+              <button className="portal-login-btn" onClick={() => setShowLogin(true)}>登录</button>
+            </>
+          )}
         </div>
       </header>
 
@@ -18,9 +34,13 @@ function Console() {
           <NavLink to="/console" end className="nav-link">仪表盘</NavLink>
           <NavLink to="/console/terminal" className="nav-link">终端</NavLink>
           <NavLink to="/console/archives" className="nav-link">档案库</NavLink>
-
           <div className="nav-sep" />
-          <div className="nav-link disabled">通讯中心</div>
+
+          {user && user.level >= 2 ? (
+            <NavLink to="/console/communications" className="nav-link">通讯中心</NavLink>
+          ) : (
+            <div className="nav-link disabled" onClick={() => setShowLogin(true)}>通讯中心 🔒</div>
+          )}
           <div className="nav-link disabled">人员管理</div>
           <div className="nav-link disabled">资产管理</div>
         </nav>
@@ -29,6 +49,8 @@ function Console() {
           <Outlet />
         </main>
       </div>
+
+      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
     </div>
   )
 }

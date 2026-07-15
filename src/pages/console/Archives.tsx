@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useAuth } from '../../context/AuthContext'
 import './Archives.css'
 
 interface Report {
@@ -41,14 +42,20 @@ const reports: Report[] = [
   },
   {
     id: 'RPT-7742',
-    title: '████████████',
+    title: '异常端点通讯记录分析',
     date: '2024/04/28',
     author: '林██',
     clearance: 3,
     content: [
-      '[需要 3级 安全许可]',
-      '───────────────',
-      '请联系系统管理员获取访问权限。',
+      '回声分析中心对 α-7 测试中发现的外部通信端点进行了为期四周的监控。以下是关键发现：',
+      '',
+      '1. 端点返回了结构化响应。数据格式与 BCMA 内部协议标准不兼容，但包含可识别的报头信息。',
+      '2. 响应延迟与距离呈非线性关系，排除常规网络延迟解释。',
+      '3. 响应数据包中包含无法解码的二进制片段。经分析，该片段为完整文件的碎片。',
+      '',
+      '初步结论: 该通信端点可能处于与 BCMA 网络不同的物理/拓扑空间。此结论与镜像界面稳定器（BM-7762）实验数据高度吻合。',
+      '',
+      '建议: 将端点监测级别提升至 ALPHA-4，并与镜像界面研究组合并数据。',
     ],
   },
   {
@@ -82,16 +89,18 @@ const reports: Report[] = [
       '收件: 中央枢纽 · 所有部门',
       '',
       '测试结论: 镜像界面稳定器（实验型号 BM-7762）在中央枢纽完成首次激活。',
-      '██ 秒后，枢纽主控室操作终端上短暂显示了来自目标世界的实时网页内容。',
+      '激活期间，枢纽主控室操作终端上短暂显示了来源不明的外部数据流。',
       '',
-      '这是两个世界之间首次被记录的双向信息穿透。',
+      '经初步分析，数据流包含的信息结构超出了当前 BCMA 已知的任何协议标准。研发部正在进行逆向解析。',
       '',
-      '[以下内容需要 2级 许可]',
+      '此事已被标记为最高安全优先级。所有相关人员请等待进一步指示。',
     ],
   },
 ]
 
 function Archives() {
+  const { user } = useAuth()
+  const level = user ? user.level : 1
   const [expanded, setExpanded] = useState<string | null>(null)
 
   return (
@@ -106,25 +115,31 @@ function Archives() {
       <div className="arch-list">
         {reports.map(r => {
           const isOpen = expanded === r.id
-          const isLocked = r.clearance > 1
+          const isLocked = r.clearance > level
 
           return (
             <div key={r.id} className={`arch-item ${isOpen ? 'open' : ''} ${isLocked ? 'locked' : ''}`}>
               <div className="arch-item-header" onClick={() => setExpanded(isOpen ? null : r.id)}>
                 <span className="arch-item-id">{r.id}</span>
                 <span className="arch-item-title">
-                  {r.title}
-                  {isLocked && <span className="arch-item-lock"> [加密]</span>}
+                  {isLocked ? '████████████' : r.title}
+                  {isLocked && <span className="arch-item-lock"> CL-{r.clearance}</span>}
                 </span>
-                <span className="arch-item-meta">{r.date} · {r.author}</span>
+                <span className="arch-item-meta">{isLocked ? '—' : `${r.date} · ${r.author}`}</span>
                 <span className="arch-item-clearance">CL-{r.clearance}</span>
               </div>
 
               {isOpen && (
                 <div className="arch-item-body">
-                  {r.content.map((line, i) => (
-                    <p key={i} className="arch-item-line">{line || '\u00A0'}</p>
-                  ))}
+                  {isLocked ? (
+                    <p className="arch-item-line" style={{ color: '#f0883e' }}>
+                      需要 {r.clearance} 级安全许可。当前许可等级: {level}。
+                    </p>
+                  ) : (
+                    r.content.map((line, i) => (
+                      <p key={i} className="arch-item-line">{line || '\u00A0'}</p>
+                    ))
+                  )}
                 </div>
               )}
             </div>
