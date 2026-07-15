@@ -1,7 +1,7 @@
 import { useState, type KeyboardEvent } from 'react'
-import './Console.css'
+import './Terminal.css'
 
-function Console() {
+function Terminal() {
   const [input, setInput] = useState('')
   const [output, setOutput] = useState<string[]>([
     'BCMA Integrated Management System v3.7.1',
@@ -84,4 +84,4 @@ function Console() {
   )
 }
 
-export default Console
+export default Terminal

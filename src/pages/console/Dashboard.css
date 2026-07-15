@@ -1,0 +1,122 @@
+.dash {
+  max-width: 780px;
+}
+
+.dash-section {
+  margin-bottom: 32px;
+}
+
+.dash-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #21262d;
+}
+
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.dash-card {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 4px;
+  padding: 16px;
+  text-align: center;
+}
+
+.dash-card.green { border-top: 2px solid #3fb950; }
+.dash-card.blue  { border-top: 2px solid #58a6ff; }
+.dash-card.orange { border-top: 2px solid #d2991d; }
+.dash-card.dim   { border-top: 2px solid #30363d; }
+
+.dash-card-value {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.dash-card.green .dash-card-value  { color: #3fb950; }
+.dash-card.blue .dash-card-value   { color: #58a6ff; }
+.dash-card.orange .dash-card-value { color: #d2991d; }
+.dash-card.dim .dash-card-value    { color: #484f58; }
+
+.dash-card-label {
+  font-size: 11px;
+  color: #484f58;
+  margin-top: 4px;
+}
+
+.dash-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-left: 3px solid;
+  margin-bottom: 4px;
+  font-size: 12px;
+  background: #0d1117;
+  font-family: 'Courier New', monospace;
+}
+
+.dash-alert-red    { border-color: #f85149; }
+.dash-alert-orange { border-color: #d2991d; }
+.dash-alert-blue   { border-color: #58a6ff; }
+
+.dash-alert-id {
+  color: #484f58;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.dash-alert-text {
+  flex: 1;
+}
+
+.dash-alert-time {
+  color: #30363d;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.dash-stations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dash-station {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #21262d;
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+}
+
+.dash-station-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.st-online .dash-station-circle  { background: #3fb950; }
+.st-warning .dash-station-circle { background: #d2991d; }
+.st-critical .dash-station-circle { background: #f85149; }
+.st-offline .dash-station-circle { background: #30363d; }
+
+.dash-station-label {
+  color: #484f58;
+  font-size: 10px;
+}
+
+.st-warning  { border-color: #d2991d; }
+.st-critical { border-color: #f85149; }

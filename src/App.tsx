@@ -1,7 +1,11 @@
 import { useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Ledger from './pages/Ledger'
-import Console from './pages/Console'
+import Console from './pages/console/Console'
+import Dashboard from './pages/console/Dashboard'
+import Terminal from './pages/console/Terminal'
+import Archives from './pages/console/Archives'
+import Discovery from './pages/console/Discovery'
 
 function App() {
   const navigate = useNavigate()
@@ -20,7 +24,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Ledger />} />
-      <Route path="/console" element={<Console />} />
+      <Route path="/console" element={<Console />}>
+        <Route index element={<Dashboard />} />
+        <Route path="terminal" element={<Terminal />} />
+        <Route path="archives" element={<Archives />} />
+        <Route path="discovery" element={<Discovery />} />
+      </Route>
       <Route path="*" element={<Ledger />} />
     </Routes>
   )
