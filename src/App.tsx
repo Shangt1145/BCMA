@@ -9,7 +9,6 @@ import Archives from './pages/console/Archives'
 import EmailTranscript from './pages/console/EmailTranscript'
 import Personnel from './pages/console/Personnel'
 import AssetManagement from './pages/console/AssetManagement'
-import Wiki from './pages/console/Wiki'
 
 function AppRoutes() {
   const navigate = useNavigate()
@@ -35,8 +34,6 @@ function AppRoutes() {
         <Route path="email" element={<EmailTranscript />} />
         <Route path="personnel" element={<Personnel />} />
         <Route path="assets" element={<AssetManagement />} />
-        <Route path="wiki" element={<Wiki />} />
-        <Route path="wiki" element={<Wiki />} />
       </Route>
       <Route path="*" element={<Ledger />} />
     </Routes>
