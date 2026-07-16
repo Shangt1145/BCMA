@@ -4,7 +4,7 @@ function Dashboard() {
   const alerts = [
     { id: 'ALT-7742', text: '第7号观测站异常信号强度上升 17%', level: 'orange', time: '2024/05/17 14:22' },
     { id: 'ALT-7743', text: '克伦威尔极限事件预警: 第13号采集站', level: 'red', time: '2024/05/17 09:41' },
-    { id: 'ALT-7738', text: '回声分析中心检测到目标世界新端点', level: 'blue', time: '2024/05/16 22:07' },
+    { id: 'ALT-7738', text: '回声分析中心检测到未知端点', level: 'blue', time: '2024/05/16 22:07' },
   ]
 
   const stations = [

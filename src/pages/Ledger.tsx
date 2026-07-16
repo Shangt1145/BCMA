@@ -67,7 +67,7 @@ function Ledger() {
               <td>004</td>
               <td>2024/03/08</td>
               <td>BM-8814</td>
-              <td>跨维通讯中继器校准模块</td>
+              <td>长距通讯中继器校准模块</td>
               <td>2</td>
               <td>件</td>
               <td><span className="black-bar" /></td>
@@ -153,7 +153,7 @@ function Ledger() {
               <td>012</td>
               <td>2024/04/05</td>
               <td>BM-4871</td>
-              <td>跨维信号解析专用处理器</td>
+              <td>深层信号解析专用处理器</td>
               <td>4</td>
               <td>台</td>
               <td>研发部</td>
